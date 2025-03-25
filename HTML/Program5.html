@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            text-align: center;
+        }
+    </style>
+   
+</head>
+<body>
+ <div class="container">   <!--  .container for class -->
+        <h1>...Function Using in HTML...</h1>
+        <h3>**Arihmatic Operation** </h3>
+        <h5>Sum Operations</h5>
+        <p id="a"></p>             <!--   //p#a then enter -->
+        <h5>Subration Operation</h5>
+        <p id="b"></p>
+        <h5>Multiplication Operation</h5>
+        <p id="c"></p>
+        <h5>Division Operation</h5>
+        <p id="d"></p>
+        <h5 id="e">sum of even natural number less than or equal to 100 is:</h5>
+        
+    </div>
+    <script>
+        function calculate(n1,n2, op){
+            switch (op){
+                case '+': return n1+n2;
+                case '-': return n1-n2;
+                case '*': return n1*n2;
+                case '/': return n1/n2;
+
+            }
+        }
+        document.getElementById("a").innerHTML="sum of 200 and 100 is:"+calculate(200,100,"+");
+        document.getElementById("b").innerHTML="Subtraction of 200 and 100 is:"+calculate(200,100,"-");
+        document.getElementById("c").innerHTML="Multiplication of 200 and 100 is:"+calculate(200,100,"*");
+        document.getElementById("d").innerHTML="Division of 200 and 100 is:"+calculate(200,100,"/");
+        
+        function even(){
+            sum =0;
+            for(let i =1;i<=100;i++){
+                if(i%2==0){
+                    sum=sum+i;
+                }
+            }
+            return sum;
+        }
+        document.getElementById("e").insertAdjacentHTML("afterend", even());
+        
+
+    </script>
+</body>
+</html>

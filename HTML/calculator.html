@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function calculate() {
+      let num1 = parseFloat(document.getElementById("num1").value);
+      let num2 = parseFloat(document.getElementById("num2").value);
+      let op = document.getElementById("operator").value;
+      let result;
+      if (op == '+') result = num1 + num2;
+      else if (op == '-') result = num1 - num2;
+      else if (op == '*') result = num1 * num2;
+      else if (op == '/') result = num1 / num2;
+      else result = "Invalid Operator";
+      document.getElementById("result").innerHTML = "Result: " + result;
+    }
+  </script>
+</head>
+<body>
+  <input id="num1" type="number">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input id="num2" type="number">
+  <button onclick="calculate()">Calculate</button>
+  <p id="result">result:</p>
+</body>
+</html>

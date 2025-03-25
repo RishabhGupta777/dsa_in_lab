@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form>
+         <fieldset>   <!-- grouped the element of the form -->
+         <div>
+            <legend>
+               <u><h1 style="text-align: center; color: red;">STUDENT REGISTRATION FORM</h1></u> 
+            </legend>
+         </div> <br>
+         <div>
+            NAME: <input type="text" placeholder="Enter Your Name">
+         </div><br>
+         <div>
+            MOTHER'S NAME: <input type="text">
+         </div><br>
+         <div>
+           FATHER'S NAME: <input type="text">
+         </div><br>
+         <div>
+            PHONE NUMBER: <input type="text">
+         </div><br>
+         <div>
+            EMAIL: <input type="text">
+         </div><br>
+         <div>
+           GENDER: MALE<input type="radio" name="my gender">&nbsp;  <!-- &nspb taki sare radio button me se ek select ho due to sare radio button alag alag h aur unhe ek line me kiya ja sake  -->
+                   FEMALE<input type="radio" name="my gender">&nbsp;
+                   OTHER<input type="radio" name="my gender">&nbsp;
+        </div><br>
+         <div>
+            Date of Birth: <input type="date">
+         </div><br>
+         <div>
+            ADDRESS: <input type="text">
+          </div><br> 
+          <div>
+            HOBBIES: <input type="text">
+          </div><br>
+          <div>
+             BLOOD GROUP:<select name="drop-down" id="drop-down">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+             </select>
+          </div><br>
+          <div>
+            DEPARTMENT: CSE<input type="radio" name="my class">&nbsp;
+                     ECE<input type="radio" name="my class">&nbsp;
+                     OTHER<input type="radio" name="my class">
+          </div><br>
+          <div>
+            PHOTO: <input type="file">
+          </div><br>
+          <div>
+            <input type="submit" value="SUBMIT">&nbsp;
+            <input type="reset" value="RESET"><br><br>&nbsp;
+          </div><br>
+          <a href="program3.html" download="program3.html">
+            <button type="button">Download</button>
+          </a>
+        </fieldset>
+    </form>
+</body>
+</html>
