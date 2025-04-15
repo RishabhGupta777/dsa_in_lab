@@ -18,6 +18,9 @@ let div = document.querySelector("div");
         console.log("div ko kyu click kiya?")
     }) ;
 
+
+
+    
 let modeBtn=document.querySelector("#mode");
 let body= document.querySelector("body");
 let currentMode = "black";

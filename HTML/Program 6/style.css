@@ -5,6 +5,10 @@ div{
     background-color: dodgerblue;
     color: white;
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    margin: auto;
 }
 .dark{
     background-color: Black;
