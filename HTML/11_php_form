@@ -1,0 +1,21 @@
+<form method="POST">
+    Name   : <input type="text" name="name"><br>
+    Email  : <input type="text" name="mail"><br>
+    Password : <input type="password" name="pass"><br>
+    <input type="submit" name="sb">
+</form>
+
+<?php
+$conn = mysqli_connect('localhost', 'root', '', 'test');
+
+if (isset($_POST['sb'])) {
+    $name = $_POST['name'];
+    $email = $_POST['mail'];
+    $password = $_POST['pass'];
+
+    $query = "INSERT INTO mydata (name, email, password) 
+              VALUES ('$name', '$email', '$password')";
+
+    $execute = mysqli_query($conn, $query);
+}
+?>

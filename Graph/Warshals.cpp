@@ -1,64 +1,43 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
 using namespace std;
 
-class Solution {
-public:
-    vector<vector<int>> shortest_distance(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == -1) {
-                    matrix[i][j] = 1e9;
-                }
-                if (i == j) {
-                    matrix[i][j] = 0;
-                }
+const int V = 4; // Number of vertices
+
+void warshall(bool graph[V][V]) {
+    for (int k = 0; k < V; ++k) {
+        for (int i = 0; i < V; ++i) {
+            for (int j = 0; j < V; ++j) {
+                graph[i][j] = graph[i][j] || (graph[i][k] && graph[k][j]);
+                //this line also can be written 
+                //if (graph[i][k] && graph[k][j]) { -->graph[i][k]==1 ya true && graph[k][j]==1 ya true ha to
+                        // graph[i][j] = 1;
+                //}
             }
-        }
-
-        for (int k = 0; k < n; k++) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    matrix[i][j] = min(matrix[i][j], matrix[i][k] + matrix[k][j]);
-                }
-            }
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (matrix[i][j] == 1e9) {
-                    matrix[i][j] = -1;
-                }
-            }
-        }
-        return matrix;
-    }
-};
-
-int main() {
-    int n;
-    cin >> n; // Size of the matrix
-    vector<vector<int>> matrix(n, vector<int>(n));
-
-    // Input the matrix
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> matrix[i][j];
         }
     }
+}
 
-    Solution sol;
-    vector<vector<int>> result = sol.shortest_distance(matrix);
-
-    // Output the result matrix
-    for (const auto& row : result) {
-        for (int val : row) {
-            cout << val << " ";
+void printGraph(bool graph[V][V]) {
+    for (int i = 0; i < V; ++i) {
+        for (int j = 0; j < V; ++j) {
+            cout << graph[i][j] << " ";
         }
         cout << endl;
     }
+}
+
+int main() {
+    bool graph[V][V] = {
+        {1, 1, 0, 1},
+        {0, 1, 1, 0},
+        {0, 0, 1, 1},
+        {0, 0, 0, 1}
+    };  
+
+    warshall(graph);
+
+    cout << "Transitive closure (reachability matrix):\n";
+    printGraph(graph);
 
     return 0;
 }
