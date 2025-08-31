@@ -14,8 +14,6 @@ void input(){
     cin>>b;
      cout<<"Enter the 3rd no.";
     cin>>c; 
-    cout<<"Enter the 4th no.";
-    cin>>d;
 }
 
 void sum(int a,int b){
