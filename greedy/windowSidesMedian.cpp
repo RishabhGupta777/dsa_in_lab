@@ -1,19 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Rebalance heaps so that right always has >= left, and at most 1 more
-void rebalance(priority_queue<int> &left,
-               priority_queue<int, vector<int>, greater<int>> &right,
-               int &x, int &y) {
-    if (x > y) {
-        int t = left.top(); left.pop();
-        right.push(t); x--; y++;
-    } else if (y > x + 1) {
-        int t = right.top(); right.pop();
-        left.push(t); y--; x++;
-    }
-}
-
 double getMedian(priority_queue<int> &left,
                  priority_queue<int, vector<int>, greater<int>> &right,
                  int x, int y) {
@@ -23,6 +10,10 @@ double getMedian(priority_queue<int> &left,
     } else {
         return (left.top() + right.top()) / 2.0;
     }
+}
+
+bool isBalanced(int x, int y) {
+    return (x == y) or (x + 1 == y);
 }
 
 vector<double> sliding_median(vector<int> &arr, int n, int k) {
@@ -37,12 +28,20 @@ vector<double> sliding_median(vector<int> &arr, int n, int k) {
         } else {
             left.push(arr[i]); x++;
         }
-        rebalance(left, right, x, y);
+        if (!isBalanced(x, y)) {
+            if (x > y) {
+                int t = left.top(); left.pop();
+                right.push(t); x--; y++;
+            } else {
+                int t = right.top(); right.pop();
+                left.push(t); y--; x++;
+            }
+        }
     }
 
     vector<double> result;
     result.push_back(getMedian(left, right, x, y));
-    unordered_map<int, int> mp; // lazy deletion
+    unordered_map<int, int> mp;
 
     for (int i = k; i < n; i++) {
         int newElementIndex = i;
@@ -52,27 +51,37 @@ vector<double> sliding_median(vector<int> &arr, int n, int k) {
 
         if (arr[newElementIndex] > med) {
             right.push(arr[newElementIndex]); y++;
+            if (!isBalanced(x, y)) {
+                int t = left.top(); left.pop();
+                right.push(t); x--; y++;
+            }
         } else {
             left.push(arr[newElementIndex]); x++;
+            if (!isBalanced(x, y)) {
+                int t = right.top(); right.pop();
+                left.push(t); y--; x++;
+            }
         }
-        rebalance(left, right, x, y);
 
-        // mark old element as deleted
         mp[arr[oldElementToBeDeleted]]++;
 
-        // clean up left
         while (!left.empty() && mp[left.top()]) {
             mp[left.top()]--;
             left.pop(); x--;
+            if (!isBalanced(x, y)) {
+                int t = right.top(); right.pop();
+                left.push(t); y--; x++;
+            }
         }
-
-        // clean up right
         while (!right.empty() && mp[right.top()]) {
             mp[right.top()]--;
             right.pop(); y--;
+            if (!isBalanced(x, y)) {
+                int t = left.top(); left.pop();
+                right.push(t); x--; y++;
+            }
         }
 
-        rebalance(left, right, x, y);
         result.push_back(getMedian(left, right, x, y));
     }
 
