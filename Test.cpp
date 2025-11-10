@@ -1,94 +1,36 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-// Rebalance heaps so that right always has >= left, and at most 1 more
-void rebalance(priority_queue<int> &left,
-               priority_queue<int, vector<int>, greater<int>> &right,
-               int &x, int &y) {
-    if (x > y) {
-        int t = left.top(); left.pop();
-        right.push(t); x--; y++;
-    } else if (y > x + 1) {
-        int t = right.top(); right.pop();
-        left.push(t); y--; x++;
+class Base {
+public:
+    virtual void display() {
+        cout << "Display from Base class" << endl;
     }
-}
+};
 
-double getMedian(priority_queue<int> &left,
-                 priority_queue<int, vector<int>, greater<int>> &right,
-                 int x, int y) {
-    int totalSize = x + y;
-    if (totalSize % 2 != 0) {
-        return right.top();
-    } else {
-        return (left.top() + right.top()) / 2.0;
+class Derived : public Base {
+public:
+    void display() override {   // overrides base class function
+        cout << "Display from Derived class" << endl;
     }
-}
-
-vector<double> sliding_median(vector<int> &arr, int n, int k) {
-    priority_queue<int> left; // max-heap
-    priority_queue<int, vector<int>, greater<int>> right; // min-heap
-    int x = 0, y = 0;
-
-    // first window
-    for (int i = 0; i < k; i++) {
-        if (right.empty() || arr[i] > right.top()) {
-            right.push(arr[i]); y++;
-        } else {
-            left.push(arr[i]); x++;
-        }
-        rebalance(left, right, x, y);
-    }
-
-    vector<double> result;
-    result.push_back(getMedian(left, right, x, y));
-    unordered_map<int, int> mp; // lazy deletion
-
-    for (int i = k; i < n; i++) {
-        int newElementIndex = i;
-        int oldElementToBeDeleted = i - k;
-
-        double med = getMedian(left, right, x, y);
-
-        if (arr[newElementIndex] > med) {
-            right.push(arr[newElementIndex]); y++;
-        } else {
-            left.push(arr[newElementIndex]); x++;
-        }
-        rebalance(left, right, x, y);
-
-        // mark old element as deleted
-        mp[arr[oldElementToBeDeleted]]++;
-
-        // clean up left
-        while (!left.empty() && mp[left.top()]) {
-            mp[left.top()]--;
-            left.pop(); x--;
-        }
-
-        // clean up right
-        while (!right.empty() && mp[right.top()]) {
-            mp[right.top()]--;
-            right.pop(); y--;
-        }
-
-        rebalance(left, right, x, y);
-        result.push_back(getMedian(left, right, x, y));
-    }
-
-    return result;
-}
+};
 
 int main() {
-    // Hardcoded input
-    vector<int> nums = {1, 3, -1, -3, 5, 3, 6, 7};
-    int k = 3;
-    int n = nums.size();
+    Base b;
+    Base* basePtr;
+    Derived d;
 
-    vector<double> ans = sliding_median(nums, n, k);
-    for (double val : ans) {
-        cout << val << "\n";
-    }
+    b.display();
+    d.display();
 
+     basePtr = &b;
+    basePtr->display();   // Output: Display from Base class
+
+    basePtr = &d;
+    basePtr->display();   // Calls Derived's display() due to overriding (runtime polymorphism)
+    
     return 0;
 }
+
+
+
