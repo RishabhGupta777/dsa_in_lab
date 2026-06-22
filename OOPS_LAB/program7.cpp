@@ -3,6 +3,7 @@ using namespace std;
 
 class DB;
 class DM{
+    public:
     float metres;
     float centimetres;
     public:
@@ -20,6 +21,7 @@ class DM{
 };
 
 class DB{
+    public:
     float feet;
     float inches;
     public:
@@ -59,13 +61,24 @@ int main(){
     case 1:
         add(m,b);
         break;
-    case 2:
-    ///calculation for inches
-        break;
-    default:
-        break;
-    }
+    case 2: {
+            // Compute total in feet/inches directly
+            float totalMeters = m.metres + (m.centimetres / 100)
+                                + (b.feet * 0.3048) + (b.inches * 0.0254);
+
+            float totalInFeet = totalMeters / 0.3048;
+            int feet = int(totalInFeet);
+            float inches = (totalInFeet - feet) * 12;
+
+            cout << "\nAfter adding (in feet and inches):\n";
+            cout << "Total Distance = " << feet << " feet and " << inches << " inches\n";
+            break;
+        }
+
+        default:
+            cout << "Invalid choice!\n";
+            break;
     
 
     return 0;
-}
+}}

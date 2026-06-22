@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 
-// Define a structure for Student
 struct Student {
     string name;
     int rollNumber;
@@ -10,11 +9,11 @@ struct Student {
 };
 
 int main() {
-    Student s1; // Declare a structure variable
+    Student s1; 
 
-    // Input student details
     cout << "Enter name: ";
     getline(cin, s1.name);
+     //getline(cin, s1.name); ka use hum isliye kar rahe taki hame input full name (with spaces) mile
 
     cout << "Enter roll number: ";
     cin >> s1.rollNumber;
@@ -22,7 +21,6 @@ int main() {
     cout << "Enter marks: ";
     cin >> s1.marks;
 
-    // Display student details
     cout << "\n--- Student Information ---" << endl;
     cout << "Name: " << s1.name << endl;
     cout << "Roll Number: " << s1.rollNumber << endl;

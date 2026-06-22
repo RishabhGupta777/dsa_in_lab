@@ -6,7 +6,7 @@ void power(int a,int b){
     cout<<c;
 }
 int main(){
-    int a=3;
+    int a=2;
     int b=2;
    power(a,b);
 }

@@ -18,9 +18,9 @@ void sum(int a,int b){
    
 int main(){
    int a,b;
-   cout<<"Ener the first no.";
+   cout<<"Enter the first no.";
    cin>>a;
-   cout<<"Ener the 2nd no.";
+   cout<<"Enter the 2nd no.";
    cin>>b;
    
    int option;

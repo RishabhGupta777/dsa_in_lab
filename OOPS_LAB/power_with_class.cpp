@@ -6,10 +6,10 @@ private:
 int a;
 int b;
 public:
-void print(){
-    cout<<"print the value of a";
+void Input(){
+    cout<<"Enter the value of a : ";
     cin>>a; 
-    cout<<"print the value of b";
+    cout<<"Enter the value of b : ";
     cin>>b;
 
 }
@@ -21,6 +21,6 @@ void use(){
 };
 int main(){
     power p1;
-    p1.print();
+    p1.Input();
     p1.use();
 }
