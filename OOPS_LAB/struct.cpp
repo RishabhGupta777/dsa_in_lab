@@ -1,30 +1,32 @@
-#include <stdio.h>
+#include <iostream>
+#include <string>
+using namespace std;
 
 // Define a structure for Student
 struct Student {
-    char name[50];
+    string name;
     int rollNumber;
     float marks;
 };
 
 int main() {
-    struct Student s1;  // Declare a structure variable
+    Student s1; // Declare a structure variable
 
     // Input student details
-    printf("Enter name: ");
-    
+    cout << "Enter name: ";
+    getline(cin, s1.name);
 
-    printf("Enter roll number: ");
-    scanf("%d", &s1.rollNumber);
+    cout << "Enter roll number: ";
+    cin >> s1.rollNumber;
 
-    printf("Enter marks: ");
-    scanf("%f", &s1.marks);
+    cout << "Enter marks: ";
+    cin >> s1.marks;
 
     // Display student details
-    printf("\n--- Student Information ---\n");
-    printf("Name: %s", s1.name);
-    printf("Roll Number: %d\n", s1.rollNumber);
-    printf("Marks: %.2f\n", s1.marks);
+    cout << "\n--- Student Information ---" << endl;
+    cout << "Name: " << s1.name << endl;
+    cout << "Roll Number: " << s1.rollNumber << endl;
+    cout << "Marks: " << s1.marks << endl;
 
     return 0;
 }
